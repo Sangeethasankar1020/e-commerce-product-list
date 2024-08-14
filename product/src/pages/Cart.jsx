@@ -2,15 +2,23 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/cartSlice";
+import ProductCard from "../components/ProductCard";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const totalItems = cartItems.length;
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Cart</h1>
-      <div className="space-y-4">
+      {/* <div className="space-y-4">
         {cartItems.length ? (
           cartItems.map((item) => (
             <div
@@ -35,7 +43,26 @@ const Cart = () => {
         ) : (
           <p>Your cart is empty.</p>
         )}
+      </div> */}
+
+      <div className="container mx-auto p-4">
+        <h1 className="text-2xl font-bold mb-4">Cart</h1>
+        <div className="space-y-4">
+          {cartItems.length ? (
+            cartItems.map((item) => (
+              <ProductCard key={item.id} product={item} />
+            ))
+          ) : (
+            <p>Your Cart is empty.</p>
+          )}
+        </div>
       </div>
+
+      {totalItems > 0 && (
+        <div className="mt-4">
+          <h2 className="text-xl font-bold">Total :${totalPrice}</h2>
+        </div>
+      )}
     </div>
   );
 };

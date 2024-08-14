@@ -3,14 +3,28 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { addToFavorites } from "../redux/favouritesSlice";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const cartItems = useSelector((state) => state.cart.items);
   const favoriteItems = useSelector((state) => state.favorites.items);
 
   const isFavorite = favoriteItems.some((item) => item.id === product.id);
   const isInCart = cartItems.some((item) => item.id === product.id);
+
+  // add to favourite
+  const handleAddToFavorties = () => {
+    dispatch(addToFavorites(product));
+  };
+
+  // view product details
+
+  const handleCardclick = () => {
+    navigate(`/product/${product.id}`);
+  };
 
   return (
     <div className="p-4 border rounded-lg shadow-lg">
@@ -34,12 +48,18 @@ const ProductCard = ({ product }) => {
         {isInCart ? "In Cart" : "Add to Cart"}
       </button>
       <button
-        onClick={() => dispatch(addToFavorites(product))}
+        onClick={handleAddToFavorties}
         className={`mt-2 px-4 py-2 ${
           isFavorite ? "bg-red-500" : "bg-gray-300"
         } text-white rounded`}
       >
-        {isFavorite ? "Favorited" : "Add to Favorites"}
+        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      </button>
+      <button
+        onClick={handleCardclick}
+        className="mt-2 px-4 py-2 bg-green-500 text-white rounded"
+      >
+        View Details
       </button>
     </div>
   );

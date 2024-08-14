@@ -1,7 +1,8 @@
 // pages/Home.js
 import React from "react";
 import ProductCard from "../components/ProductCard";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const products = [
   {
@@ -167,8 +168,13 @@ const products = [
 ];
 const Home = () => {
   const navigate = useNavigate();
+  const cartItems = useSelector((state) => state.cart.items);
+
   const goToFav = () => {
     navigate("/favorites");
+  };
+  const goToCart = () => {
+    navigate("/cart");
   };
   return (
     <div className="container mx-auto p-4">
@@ -180,9 +186,9 @@ const Home = () => {
           <div onClick={() => goToFav()} className="text-blue-500">
             Favorites
           </div>
-          <a href="/cart" className="text-blue-500">
-            Cart
-          </a>
+          <div onClick={() => goToCart()} className="text-blue-500">
+            Cart({cartItems.length})
+          </div>
         </div>
       </nav>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
