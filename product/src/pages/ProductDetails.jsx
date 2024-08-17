@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
-  const { id } = useParams();
-  console.log("Product ID from URL:", id);
+  const { id } = useParams(); // Get the product ID from the URL
+  const products = useSelector((state) => state.products.products);
 
-  const product = useSelector((state) =>
-    state.products.find((product) => product.id === parseInt(id))
-  );
-
-  console.log("product found", product);
+  if (!Array.isArray(products)) {
+    // return <div>Loading...</div>;
+    console.error("Expected products to be array but got:", products);
+    return <p>Loading</p>;
+  }
+  const product = products.find((product) => product.id === parseInt(id)); // Find the product by ID
 
   if (!product) {
     return <p>Product not found</p>;

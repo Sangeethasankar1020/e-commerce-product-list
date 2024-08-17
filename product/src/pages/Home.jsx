@@ -1,10 +1,11 @@
 // pages/Home.js
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../redux/productSlice";
 
-const products = [
+const initialProducts = [
   {
     id: 1,
     name: "Product 1",
@@ -168,7 +169,15 @@ const products = [
 ];
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const products = useSelector((state) => state.products);
+
+  // to dispatch products to the redux store
+
+  useEffect(() => {
+    dispatch(setProducts(initialProducts)); // Set local products array to the Redux store
+  }, [dispatch]);
 
   const goToFav = () => {
     navigate("/favorites");
@@ -192,7 +201,7 @@ const Home = () => {
         </div>
       </nav>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {products.map((product) => (
+        {initialProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

@@ -23,6 +23,7 @@ const ProductCard = ({ product }) => {
   // view product details
 
   const handleCardclick = () => {
+    // save product data to local storage
     navigate(`/product/${product.id}`);
   };
 
