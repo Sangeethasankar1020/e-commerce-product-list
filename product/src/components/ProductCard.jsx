@@ -28,7 +28,19 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-lg">
+    <div className="relative p-4 border rounded-lg shadow-lg overflow-hidden">
+      {/* Tags */}
+      {product.isNew && (
+        <span className="absolute top-0 left-0 bg-green-500 text-white text-xs px-2 py-1 rounded-br-lg">
+          New Product
+        </span>
+      )}
+      {product.isStockOut && (
+        <span className="absolute top-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded-br-lg mt-8">
+          Stock Out
+        </span>
+      )}
+
       <img
         src={product.img}
         alt={product.name}

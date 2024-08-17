@@ -13,6 +13,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 10,
     rating: 4.5,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 2,
@@ -21,6 +23,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 20,
     rating: 4.0,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 3,
@@ -29,6 +33,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 15,
     rating: 4.2,
+    isNew: false,
+    isStockOut: true,
   },
   {
     id: 4,
@@ -37,6 +43,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 25,
     rating: 4.8,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 5,
@@ -45,6 +53,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 12,
     rating: 4.3,
+    isNew: false,
+    isStockOut: true,
   },
   {
     id: 6,
@@ -53,6 +63,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 18,
     rating: 4.1,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 7,
@@ -61,6 +73,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 22,
     rating: 4.7,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 8,
@@ -69,6 +83,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 17,
     rating: 4.4,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 9,
@@ -77,6 +93,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 19,
     rating: 4.6,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 10,
@@ -85,6 +103,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 14,
     rating: 4.5,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 11,
@@ -93,6 +113,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 13,
     rating: 4.9,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 12,
@@ -101,6 +123,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 28,
     rating: 4.0,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 13,
@@ -109,6 +133,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 21,
     rating: 4.4,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 14,
@@ -117,6 +143,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 16,
     rating: 4.2,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 15,
@@ -125,6 +153,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 26,
     rating: 4.3,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 16,
@@ -133,6 +163,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 20,
     rating: 4.5,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 17,
@@ -149,6 +181,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 30,
     rating: 4.7,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 19,
@@ -157,6 +191,8 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 27,
     rating: 4.8,
+    isNew: true,
+    isStockOut: false,
   },
   {
     id: 20,
@@ -165,8 +201,11 @@ const initialProducts = [
     img: "https://via.placeholder.com/150",
     price: 29,
     rating: 4.9,
+    isNew: false,
+    isStockOut: true,
   },
 ];
+
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
