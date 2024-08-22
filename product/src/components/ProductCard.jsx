@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { addToFavorites } from "../redux/favouritesSlice";
 import { useNavigate } from "react-router-dom";
+import "react-responsive-carousel/lib/styles/carousel.css";
+import { Carousel } from "react-responsive-carousel";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -31,21 +33,39 @@ const ProductCard = ({ product }) => {
     <div className="relative p-4 border rounded-lg shadow-lg overflow-hidden">
       {/* Tags */}
       {product.isNew && (
-        <span className="absolute top-0 left-0 bg-green-500 text-white text-xs px-2 py-1 rounded-br-lg">
+        <span className="absolute top-0 left-0 bg-green-500 text-white text-xs px-2 py-1 rounded-br-lg z-10">
           New Product
         </span>
       )}
       {product.isStockOut && (
-        <span className="absolute top-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded-br-lg mt-8">
+        <span
+          className={`absolute ${
+            product.isNew ? "mt-6" : "mt-0"
+          } top-0 left-0 bg-red-500 text-white text-xs px-2 py-1 rounded-br-lg z-10`}
+        >
           Stock Out
         </span>
       )}
 
-      <img
+      {/* <img
         src={product.img}
         alt={product.name}
         className="w-full h-48 object-cover mb-4"
-      />
+      /> */}
+      {/* carousel for product images */}
+
+      <Carousel showThumbs={false} infiniteLoop autoPlay>
+        {product.img.map((image, index) => (
+          <div key={index}>
+            <img
+              src={image}
+              alt={`${product.name} ${index + 1}`}
+              className="w-full h-48 object-cover mb-4"
+            />
+          </div>
+        ))}
+      </Carousel>
+
       <h2 className="text-xl font-semibold">{product.name}</h2>
       <p className="text-gray-600 mb-2">{product.description}</p>
       <p className="text-lg font-bold">${product.price}</p>
