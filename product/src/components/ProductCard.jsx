@@ -1,8 +1,8 @@
 // components/ProductCard.js
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../redux/cartSlice";
-import { addToFavorites } from "../redux/favouritesSlice";
+import { addToCart, removeFromCart } from "../redux/cartSlice";
+import { addToFavorites, removeFromFavorites } from "../redux/favouritesSlice";
 import { useNavigate } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import { Carousel } from "react-responsive-carousel";
@@ -19,9 +19,21 @@ const ProductCard = ({ product }) => {
 
   // add to favourite
   const handleAddToFavorties = () => {
-    dispatch(addToFavorites(product));
+    if (isFavorite) {
+      dispatch(removeFromFavorites(product.id));
+    } else {
+      dispatch(addToFavorites(product));
+    }
   };
+  // add to cart
 
+  const handleAddCart = () => {
+    if (isInCart) {
+      dispatch(removeFromCart(product.id));
+    } else {
+      dispatch(addToCart(product));
+    }
+  };
   // view product details
 
   const handleCardclick = () => {
@@ -73,7 +85,7 @@ const ProductCard = ({ product }) => {
         <span className="text-yellow-500">{product.rating} ★</span>
       </div>
       <button
-        onClick={() => dispatch(addToCart(product))}
+        onClick={handleAddCart}
         className={`mt-4 px-4 py-2 bg-blue-500 text-white rounded ${
           isInCart ? "bg-blue-300" : ""
         }`}

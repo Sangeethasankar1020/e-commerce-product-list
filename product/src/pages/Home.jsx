@@ -8,281 +8,303 @@ import { setProducts } from "../redux/productSlice";
 const initialProducts = [
   {
     id: 1,
-    name: "Product 1",
-    description: "High quality product 1",
+    name: "Electronics Gadget 1",
+    description: "High-quality electronics gadget for daily use.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Electronics+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Electronics+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Electronics+1",
     ],
     price: 10,
     rating: 4.5,
     isNew: true,
     isStockOut: false,
+    category: "Electronics",
   },
   {
     id: 2,
-    name: "Product 2",
-    description: "High quality product 2",
+    name: "Electronics Gadget 2",
+    description: "Advanced electronics gadget with multiple features.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Electronics+2",
+      "https://via.placeholder.com/150/98FB98/000000?text=Electronics+2",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Electronics+2",
+    ],
+    price: 15,
+    rating: 4.7,
+    isNew: true,
+    isStockOut: false,
+    category: "Electronics",
+  },
+  {
+    id: 3,
+    name: "Electronics Gadget 3",
+    description: "Compact electronics gadget suitable for travel.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Electronics+3",
+      "https://via.placeholder.com/150/98FB98/000000?text=Electronics+3",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Electronics+3",
+    ],
+    price: 8,
+    rating: 4.0,
+    isNew: true,
+    isStockOut: false,
+    category: "Electronics",
+  },
+  {
+    id: 4,
+    name: "Home Appliance 1",
+    description: "Energy-efficient home appliance.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Home+Appliance+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Home+Appliance+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Home+Appliance+1",
     ],
     price: 20,
     rating: 4.0,
     isNew: true,
     isStockOut: false,
+    category: "Home Appliance",
   },
   {
-    id: 3,
-    name: "Product 3",
-    description: "High quality product 3",
+    id: 5,
+    name: "Fashion Item 1",
+    description: "Stylish fashion item for modern wear.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Fashion+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Fashion+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Fashion+1",
     ],
     price: 15,
     rating: 4.2,
     isNew: false,
     isStockOut: true,
+    category: "Fashion",
   },
   {
-    id: 4,
-    name: "Product 4",
-    description: "High quality product 4",
+    id: 6,
+    name: "Beauty Product 1",
+    description: "Natural beauty product for skincare.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Beauty+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Beauty+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Beauty+1",
     ],
     price: 25,
     rating: 4.8,
     isNew: true,
     isStockOut: false,
-  },
-  {
-    id: 5,
-    name: "Product 5",
-    description: "High quality product 5",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 12,
-    rating: 4.3,
-    isNew: false,
-    isStockOut: true,
-  },
-  {
-    id: 6,
-    name: "Product 6",
-    description: "High quality product 6",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 18,
-    rating: 4.1,
-    isNew: true,
-    isStockOut: false,
+    category: "Beauty",
   },
   {
     id: 7,
-    name: "Product 7",
-    description: "High quality product 7",
+    name: "Sports Equipment 1",
+    description: "Durable sports equipment for athletes.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 22,
-    rating: 4.7,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 8,
-    name: "Product 8",
-    description: "High quality product 8",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 17,
-    rating: 4.4,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 9,
-    name: "Product 9",
-    description: "High quality product 9",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 19,
-    rating: 4.6,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 10,
-    name: "Product 10",
-    description: "High quality product 10",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 14,
-    rating: 4.5,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 11,
-    name: "Product 11",
-    description: "High quality product 11",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 13,
-    rating: 4.9,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 12,
-    name: "Product 12",
-    description: "High quality product 12",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 28,
-    rating: 4.0,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 13,
-    name: "Product 13",
-    description: "High quality product 13",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 21,
-    rating: 4.4,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 14,
-    name: "Product 14",
-    description: "High quality product 14",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 16,
-    rating: 4.2,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 15,
-    name: "Product 15",
-    description: "High quality product 15",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 26,
-    rating: 4.3,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 16,
-    name: "Product 16",
-    description: "High quality product 16",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 20,
-    rating: 4.5,
-    isNew: true,
-    isStockOut: false,
-  },
-  {
-    id: 17,
-    name: "Product 17",
-    description: "High quality product 17",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
-    ],
-    price: 11,
-    rating: 4.6,
-  },
-  {
-    id: 18,
-    name: "Product 18",
-    description: "High quality product 18",
-    img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Sports+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Sports+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Sports+1",
     ],
     price: 30,
     rating: 4.7,
     isNew: true,
     isStockOut: false,
+    category: "Sports",
+  },
+  {
+    id: 8,
+    name: "Furniture Item 1",
+    description: "Stylish furniture for home decor.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Furniture+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Furniture+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Furniture+1",
+    ],
+    price: 50,
+    rating: 4.3,
+    isNew: true,
+    isStockOut: false,
+    category: "Furniture",
+  },
+  {
+    id: 9,
+    name: "Book 1",
+    description: "Inspirational book to boost your motivation.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Book+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Book+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Book+1",
+    ],
+    price: 10,
+    rating: 4.9,
+    isNew: true,
+    isStockOut: false,
+    category: "Books",
+  },
+  {
+    id: 10,
+    name: "Kitchen Appliance 1",
+    description: "Efficient kitchen appliance for quick cooking.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Kitchen+Appliance+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Kitchen+Appliance+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Kitchen+Appliance+1",
+    ],
+    price: 35,
+    rating: 4.6,
+    isNew: true,
+    isStockOut: false,
+    category: "Kitchen",
+  },
+  {
+    id: 11,
+    name: "Toy 1",
+    description: "Fun and safe toy for children.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Toy+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Toy+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Toy+1",
+    ],
+    price: 12,
+    rating: 4.1,
+    isNew: true,
+    isStockOut: false,
+    category: "Toys",
+  },
+  {
+    id: 12,
+    name: "Gardening Tool 1",
+    description: "Essential gardening tool for home use.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Gardening+Tool+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Gardening+Tool+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Gardening+Tool+1",
+    ],
+    price: 18,
+    rating: 4.4,
+    isNew: true,
+    isStockOut: false,
+    category: "Gardening",
+  },
+  {
+    id: 13,
+    name: "Electronics Gadget 4",
+    description: "Portable electronics gadget with long battery life.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Electronics+4",
+      "https://via.placeholder.com/150/98FB98/000000?text=Electronics+4",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Electronics+4",
+    ],
+    price: 22,
+    rating: 4.5,
+    isNew: false,
+    isStockOut: true,
+    category: "Electronics",
+  },
+  {
+    id: 14,
+    name: "Health Product 1",
+    description: "Premium health product for everyday wellness.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Health+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Health+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Health+1",
+    ],
+    price: 40,
+    rating: 4.6,
+    isNew: true,
+    isStockOut: false,
+    category: "Health",
+  },
+  {
+    id: 15,
+    name: "Outdoor Gear 1",
+    description: "Durable outdoor gear for adventure enthusiasts.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Outdoor+Gear+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Outdoor+Gear+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Outdoor+Gear+1",
+    ],
+    price: 60,
+    rating: 4.7,
+    isNew: true,
+    isStockOut: false,
+    category: "Outdoor",
+  },
+  {
+    id: 16,
+    name: "Pet Supplies 1",
+    description: "High-quality pet supplies for your beloved pets.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Pet+Supplies+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Pet+Supplies+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Pet+Supplies+1",
+    ],
+    price: 14,
+    rating: 4.3,
+    isNew: false,
+    isStockOut: true,
+    category: "Pet Supplies",
+  },
+  {
+    id: 17,
+    name: "Fashion Item 2",
+    description: "Trendy fashion item for casual wear.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Fashion+2",
+      "https://via.placeholder.com/150/98FB98/000000?text=Fashion+2",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Fashion+2",
+    ],
+    price: 20,
+    rating: 4.5,
+    isNew: true,
+    isStockOut: false,
+    category: "Fashion",
+  },
+  {
+    id: 18,
+    name: "Jewelry Item 1",
+    description: "Elegant jewelry for special occasions.",
+    img: [
+      "https://via.placeholder.com/150/87CEEB/000000?text=Jewelry+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Jewelry+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Jewelry+1",
+    ],
+    price: 75,
+    rating: 4.9,
+    isNew: true,
+    isStockOut: false,
+    category: "Jewelry",
   },
   {
     id: 19,
-    name: "Product 19",
-    description: "High quality product 19",
+    name: "Gadget Accessory 1",
+    description: "Essential gadget accessory for tech enthusiasts.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Gadget+Accessory+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Gadget+Accessory+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Gadget+Accessory+1",
     ],
-    price: 27,
-    rating: 4.8,
-    isNew: true,
-    isStockOut: false,
+    price: 12,
+    rating: 4.4,
+    isNew: false,
+    isStockOut: true,
+    category: "Accessories",
   },
   {
     id: 20,
-    name: "Product 20",
-    description: "High quality product 20",
+    name: "Stationery 1",
+    description: "Premium stationery for office and school use.",
     img: [
-      "https://via.placeholder.com/150/87CEEB", // Light Sky Blue
-      "https://via.placeholder.com/150/98FB98", // Pale Green
-      "https://via.placeholder.com/150/FFDAB9",
+      "https://via.placeholder.com/150/87CEEB/000000?text=Stationery+1",
+      "https://via.placeholder.com/150/98FB98/000000?text=Stationery+1",
+      "https://via.placeholder.com/150/FFDAB9/000000?text=Stationery+1",
     ],
-    price: 29,
-    rating: 4.9,
-    isNew: false,
-    isStockOut: true,
+    price: 5,
+    rating: 4.1,
+    isNew: true,
+    isStockOut: false,
+    category: "Stationery",
   },
 ];
 

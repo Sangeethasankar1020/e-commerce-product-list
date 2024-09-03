@@ -15,7 +15,12 @@ const Favourites = () => {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p>No favorite items yet.</p>
+          <p>
+            No favorite items yet.
+            <a href="/" className="text-blue-500">
+              Go back to shopping
+            </a>
+          </p>
         )}
       </div>
     </div>
