@@ -6,6 +6,7 @@ import { addToFavorites, removeFromFavorites } from "../redux/favouritesSlice";
 import { useNavigate } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import { Carousel } from "react-responsive-carousel";
+import { addOrderItem } from "../redux/checkoutSlice";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -39,6 +40,16 @@ const ProductCard = ({ product }) => {
   const handleCardclick = () => {
     // save product data to local storage
     navigate(`/product/${product.id}`);
+  };
+
+  // buy now
+  const handleBuyNow = (product) => {
+    // if (!isInCart) {
+    //   dispatch(addToCart(product));
+    // } else {
+    dispatch(addOrderItem(product));
+    navigate("/checkout");
+    // }
   };
 
   return (
@@ -105,6 +116,13 @@ const ProductCard = ({ product }) => {
         className="mt-2 px-4 py-2 bg-green-500 text-white rounded"
       >
         View Details
+      </button>
+
+      <button
+        onClick={() => handleBuyNow(product)}
+        className="mt-2 px-4 py-2 bg-orange-500 text-white rounded"
+      >
+        Buy Now
       </button>
     </div>
   );
