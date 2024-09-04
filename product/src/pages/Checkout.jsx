@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearOrderItems } from "../redux/checkoutSlice";
+import { clearOrderItems, removeOrderItem } from "../redux/checkoutSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -8,10 +10,12 @@ const Checkout = () => {
   console.log(orderItems);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // optionally clear items if needed on component mount
-    // dispatch(clearOrderItems())
-  }, [dispatch]);
+  const handleRemoveItem = (itemTd) => {
+    dispatch(removeOrderItem(itemTd));
+  };
+  const handleClearOrder = () => {
+    dispatch(clearOrderItems());
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,13 +75,26 @@ const Checkout = () => {
       <h2 className="text-xl font-bold mt-8">Order Summary</h2>
       <ul className="mt-4">
         {orderItems?.map((item) => (
-          <li key={item.id} className="flex justify-between py-2">
+          <li key={item.id} className="flex justify-between py-2 items-center">
             <span>{item.name}</span>
-            <span>${item.price}</span>
+            <span className="flex items-center">${item.price}</span>
+            <button
+              onClick={() => handleRemoveItem(item.id)}
+              className="ml-2 text-red-500"
+            >
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
           </li>
         ))}
       </ul>
-
+      {orderItems.length > 0 && (
+        <button
+          onClick={handleClearOrder}
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+        >
+          Clear All
+        </button>
+      )}
       <div className="mt-4 text-lg font-bold">
         Total: ${cartItems.reduce((total, item) => total + item.price, 0)}
       </div>
