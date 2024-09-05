@@ -326,6 +326,8 @@ const Home = () => {
   const goToCart = () => {
     navigate("/cart");
   };
+  const goToAccount = () => navigate("/account");
+
   return (
     <div className="container mx-auto p-4">
       <nav className="flex justify-between items-center mb-4">
@@ -338,6 +340,9 @@ const Home = () => {
           </div>
           <div onClick={() => goToCart()} className="text-blue-500">
             Cart({cartItems.length})
+          </div>
+          <div onClick={goToAccount} className="text-blue-500">
+            Account
           </div>
         </div>
       </nav>
