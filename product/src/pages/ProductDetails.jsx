@@ -1,37 +1,52 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
+import { increaseStock, decreaseStock, setStock } from "../redux/stockSlice";
+import { addOrderItem } from "../redux/checkoutSlice";
 
 const ProductDetails = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const stock = useSelector((state) => state.stock);
+  const product = products?.find((product) => product.id === parseInt(id)); // Find the product by ID
+
+  useEffect(() => {
+    if (product) {
+      dispatch(setStock({ productId: product.id, stock: product.stock })); // Set stock count for the selected product
+    }
+  }, [product, dispatch]);
 
   if (!Array.isArray(products)) {
-    // return <div>Loading...</div>;
     console.error("Expected products to be array but got:", products);
-    return <p>Loading</p>;
+    return <p>Loading...</p>;
   }
-  const product = products.find((product) => product.id === parseInt(id)); // Find the product by ID
 
   if (!product) {
     return <p>Product not found</p>;
   }
 
-  // filter related products based on the same category
-
+  // Filter related products based on the same category
   const relatedProducts = products.filter(
-    (p) => p.category === product.category && p.id !== product.id //exclude the current product
+    (p) => p.category === product.category && p.id !== product.id // Exclude the current product
   );
+
+  const handleBuyNow = () => {
+    const currentStock = stock[product.id]?.stock || 0; // Use stock state
+    if (currentStock > 0) {
+      dispatch(addOrderItem(product));
+      dispatch(decreaseStock({ productId: product.id, quantity: 1 }));
+      navigate("/checkout");
+    } else {
+      alert("Out of stock!");
+    }
+  };
 
   return (
     <div className="container mx-auto p-4">
-      {/* <img
-        src={product.img}
-        alt={product.name}
-        className="w-full h-64 object-cover mb-4"
-      ></img> */}
       <Carousel showThumbs={false} infiniteLoop autoPlay>
         {product.img.map((image, index) => (
           <div key={index}>
@@ -46,10 +61,45 @@ const ProductDetails = () => {
       <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
       <p className="text-lg mb-4">{product.description}</p>
       <p className="text-xl font-semibold mb-4">${product.price}</p>
-      <p className="text-yellow-500 mb-4">{product.rating}</p>
+      <p className="text-yellow-500 mb-4">Rating: {product.rating}</p>
 
-      {/* related products */}
+      <div className="mb-4">
+        <button
+          className="px-3 py-2 bg-gray-200"
+          onClick={() => {
+            if (stock[product.id]?.count > 0) {
+              dispatch(decreaseStock({ productId: product.id, quantity: 1 }));
+            }
+          }}
+        >
+          -
+        </button>
+        <span className="mx-4 text-xl">{stock[product.id]?.count || 0}</span>
+        <button
+          className="px-3 py-2 bg-orange-500 text-white rounded"
+          onClick={() => {
+            if (stock[product.id]?.count < product.stock) {
+              dispatch(increaseStock({ productId: product.id, quantity: 1 }));
+            }
+          }}
+        >
+          +
+        </button>
 
+        <p className="text-sm px-4 py-2 bg-orange-500 w-28 m-3">
+          In Stock: {product.stock}
+        </p>
+      </div>
+
+      <button
+        onClick={handleBuyNow}
+        className="mt-2 px-4 py-2 bg-orange-500 text-white rounded"
+        disabled={stock[product.id]?.count === 0 || product.isStockout}
+      >
+        Buy Now
+      </button>
+
+      {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div className="mt-12">
           <h3 className="text-3xl font-semibold mb-6 text-gray-800">
@@ -97,5 +147,4 @@ const ProductDetails = () => {
     </div>
   );
 };
-
 export default ProductDetails;

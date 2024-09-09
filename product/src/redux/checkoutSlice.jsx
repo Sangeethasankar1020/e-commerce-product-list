@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// load initial state from local storage
-
+// Load initial state from local storage
 const loadInitialState = () => {
   const savedOrderItems = localStorage.getItem("checkOutProducts");
   return savedOrderItems ? JSON.parse(savedOrderItems) : [];
@@ -14,54 +13,66 @@ const initialState = {
     paymentMethod: "",
     cardDetails: "",
   },
-  orderItems: loadInitialState(), //load from local storage
-  status: "idle", // or pending , succeded failed
+  orderItems: loadInitialState(),
+  status: "idle",
   error: null,
 };
 
 const checkoutSlice = createSlice({
-  name: "checkout",
-  initialState,
+  name: "checkOutProducts",
+  initialState: {
+    orderItems: [],
+  },
   reducers: {
-    setUserInfo(state, action) {
-      state.userInfo = { ...state.userInfo, ...action.payload };
-    },
     addOrderItem(state, action) {
-      state.orderItems.push(action.payload);
-      localStorage.setItem(
-        "checkOutProducts",
-        JSON.stringify(state.orderItems)
-      ); //save to local storage
+      const item = action.payload;
+      const existingItem = state.items.find((i) => i.id === item.id);
+
+      if (existingItem) {
+        existingItem.quantity += item.quantity;
+      } else {
+        state.items.push({ ...item, quantity: item.quantity });
+      }
+    },
+    increaseQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const item = state.items.find((i) => i.id === id);
+      if (item) {
+        item.quantity += quantity;
+      }
+    },
+    decreaseQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const item = state.items.find((i) => i.id === id);
+      if (item) {
+        item.quantity = Math.max(item.quantity - quantity, 0);
+      }
     },
     removeOrderItem(state, action) {
       state.orderItems = state.orderItems.filter(
         (item) => item.id !== action.payload
       );
-      localStorage.setItem(
-        "checkOutProducts",
-        JSON.stringify(state.orderItems)
-      );
+    },
+    updateOrderItemQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const item = state.orderItems.find((item) => item.id === id);
+      if (item) {
+        item.quantity = quantity;
+      }
     },
     clearOrderItems(state) {
       state.orderItems = [];
-      localStorage.removeItem("checkOutProducts"); //clear from local storage
-    },
-    setStatus(state, action) {
-      state.status = action.payload;
-    },
-    setError(state, action) {
-      state.error = action.payload;
     },
   },
 });
 
 export const {
-  setUserInfo,
   addOrderItem,
   removeOrderItem,
+  updateOrderItemQuantity,
   clearOrderItems,
-  setStatus,
-  setError,
+  increaseQuantity,
+  decreaseQuantity,
 } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;
